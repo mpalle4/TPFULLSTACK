@@ -32,16 +32,8 @@ app.post("/", (req, res) => {
   res.send("Llamada post");
 });
 
-//-------------------------------------------------------------------------------------------------------
-// LOGIN
-//-------------------------------------------------------------------------------------------------------
 app.post("/login", async (req, res) => {});
 
-//-------------------------------------------------------------------------------------------------------
-// ENDPOINTS USER
-//-------------------------------------------------------------------------------------------------------
-
-//Get de todos los usuarios
 app.get("/users", async (req, res) => {
   let limit = req.query.limit;
   let offset = req.query.offset;
@@ -54,7 +46,7 @@ app.get("/users", async (req, res) => {
   }
 });
 
-//Get info de un usuario Middleware.verify,
+//Middleware.verify,
 app.get("/users/:id", async (req, res) => {
   let userId = req.params.id;
 
@@ -66,7 +58,7 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
-//Creo nuevo usuario Middleware.verify
+//Middleware.verify
 app.post("/users/create", async (req, res) => {
   let name = req.body.name;
   let lastname = req.body.lastname;
@@ -92,7 +84,7 @@ app.post("/users/create", async (req, res) => {
   }
 });
 
-//Edito usuario , Middleware.verify
+//Middleware.verify
 app.put("/users/:id/edit", async (req, res) => {
   const user = { _id: req.params.id, ...req.body };
 
@@ -108,7 +100,7 @@ app.put("/users/:id/edit", async (req, res) => {
   }
 });
 
-// Elimino un usuario , Middleware.verify
+//Middleware.verify
 app.delete("/users/:id/delete", async (req, res) => {
   try {
     const result = await UsrController.deleteUser(req.params.id);
@@ -122,7 +114,7 @@ app.delete("/users/:id/delete", async (req, res) => {
   }
 });
 
-// Edito roldes del usuario , Middleware.verify
+//Middleware.verify
 app.put("/users/:id/editRoles", async (req, res) => {
   const roles = req.body.roles;
   try {
@@ -136,8 +128,8 @@ app.put("/users/:id/editRoles", async (req, res) => {
     res.status(500).send("Error");
   }
 });
-
-//Edito isActive , Middleware.verify
+ 
+//Middleware.verify
 app.put("/users/:id/editActive", async (req, res) => {
   const isActive = req.body.isActive;
   try {
