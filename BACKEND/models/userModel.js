@@ -28,11 +28,11 @@ const usrSchema = new Schema(
       type: String,
       required: true,
     },
-    characterIdCounter: {
+    myCharacters: {
       type: Number,
-      required: false,
-      default:0,
-    }
+      required: true,
+      default: 0,
+    },
   },
   { timestamps: true }
 ).set("toJSON", {

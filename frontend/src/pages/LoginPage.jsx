@@ -17,7 +17,7 @@ const LoginPage = () => {
   const getMyCharacters = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/users/${email.current.value}`,
+        `http://localhost:4000/users/${email.current.value}`,
         {
           method: "GET",
           headers: {
@@ -46,7 +46,7 @@ const LoginPage = () => {
   };
 
   const handleLogin = async () => {
-    fetch("http://localhost:3000/login", {
+    fetch("http://localhost:4000/login", {
       method: "POST",
       headers: {
         Accept: "Application/json",

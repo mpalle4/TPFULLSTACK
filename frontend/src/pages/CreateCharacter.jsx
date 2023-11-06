@@ -36,7 +36,7 @@ const CreateCharacter = () => {
 
   const handleCreation = async () => {
     console.log(JSON.stringify(characterData));
-    fetch("http://localhost:3000/characters/create", {
+    fetch("http://localhost:4000/characters/create", {
       method: "POST",
       headers: {
         Accept: "Application/json",

@@ -27,8 +27,7 @@ const characterSchema = new Schema(
       required: true,
     },
     createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "usr", //
+      type: String,
       required: true,
     },
   },

@@ -15,8 +15,11 @@ const login = async (email, password) => {
   });
 
   if (result) {
-    const token = jwt.sign({ email: result.email, userId: result._id }, "fgdgbrfeer6g1df23g86ef2gs");
-    return {token, user: result};
+    //retorno token
+    //jwt.sign('payload', 'secret_key', 'options');
+    //const token = jwt.sign(foo: 'bar', 'secret_key');
+    const token = "fgdgbrfeer6g1df23g86ef2gs";
+    return token;
   }
 
   return null;

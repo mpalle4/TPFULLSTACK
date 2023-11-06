@@ -26,33 +26,28 @@ const getCharactersByUser = async (userId) => {
 };
 
 const createCharacter = async (
-  userId,
   characterId,
   name,
-  face,
+  faceImage,
   upperBody,
   lowerBody,
-  shoes
+  shoes,
+  createdBy
 ) => {
-  const user = await Usr.findById(userId);
+  const character = new Character({
+    characterId: characterId,
+    name: name,
+    faceImage: faceImage,
+    upperBody: upperBody,
+    lowerBody: lowerBody,
+    shoes: shoes,
+    createdBy: createdBy,
+  });
 
-  if (!user) {
-    return false;
-  } else {
-    const character = new Character({
-      createdBy: userId,
-      characterId: characterId,
-      name: name,
-      face: face,
-      upperBody: upperBody,
-      lowerBody: lowerBody,
-      shoes: shoes,
-    });
-    let createdCharacter = await character.save();
-    console.log("Personaje nuevo");
-    console.log(createdCharacter);
-    return { createdCharacter };
-  }
+  let createdCharacter = await character.save();
+  console.log("Personaje nuevo");
+  console.log(createdCharacter);
+  return { createdCharacter };
 };
 
 const editCharacter = async (character) => {
