@@ -7,10 +7,13 @@ const Header = (props) => {
   return (
     <HeaderContainer>
       <div className="logo">
-        <h2>Mis personajes</h2>
-      </div>
+            <img
+              src="https://www.generaldefranquicias.com/wp-content/uploads/2022/06/mis-personajes-logo.png"
+              alt="logo"
+            />
+          </div>
       <button onClick={() => navigate(props.login ? "/login" : "/signup")}>
-        {props.login ? "Log In " : "Sign In"}
+        {props.login ? "Logearse " : "Registrarse"}
       </button>
     </HeaderContainer>
   );
@@ -21,25 +24,21 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  h2 {
-    padding: 0.5rem;
-    background-color: red;
-    border: none;
-    cursor: pointer;
-    color: white;
-    border-radius: 0.2rem;
-    font-weight: bolder;
-    font-size: 1.05rem;
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
   }
   button {
-    padding: 0.5rem;
-    background-color: red;
+    padding: 0.7rem;
+    background-color: blue;
     border: none;
     cursor: pointer;
     color: white;
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
     font-weight: bolder;
-    font-size: 1.05rem;
+    font-size: 2rem;
   }
 `;
 export default Header;

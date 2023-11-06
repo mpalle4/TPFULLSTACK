@@ -2,8 +2,7 @@ import React from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-//import { onAuthStateChanged, signOut } from "firebase/auth";
-//import { firebaseAuth } from "../utils/firebase-config";
+
 
 const TopNav = ({ isScrolled }) => {
   const navLinks = [
@@ -12,16 +11,16 @@ const TopNav = ({ isScrolled }) => {
       link: "/",
     },
     {
-      name: "My characters",
+      name: "Mis personajes",
       link: "/tv",
     },
     {
-      name: "Create character",
+      name: "Crear personaje",
       link: "/character/create",
     },
     {
-      name: "Trending",
-      link: "/movies",
+      name: "Loguearse",
+      link: "/login",
     },
   ];
 
@@ -35,7 +34,7 @@ const TopNav = ({ isScrolled }) => {
         <div className="leftSide">
           <div className="logo">
             <img
-              src="https://logos.flamingtext.com/Word-Logos/character-design-amped-logo.png"
+              src="https://www.generaldefranquicias.com/wp-content/uploads/2022/06/mis-personajes-logo.png"
               alt="logo"
             />
           </div>

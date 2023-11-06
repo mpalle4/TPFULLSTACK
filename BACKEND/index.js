@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const http = require("http").createServer(app);
 const cors = require("cors");
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config({ path: "./.env" });
 const PORT = process.env.PORT;
 const uri = process.env.MONGO_URI;
 

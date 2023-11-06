@@ -3,10 +3,7 @@ import styled from "styled-components";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { FaPlay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-//import { useDispatch, useSelector } from "react-redux";
-
 import TopNav from "../components/TopNav";
-//import { fetchMovies, getGenres } from "../store/index";
 import SliderContainer from "../components/SliderContainer";
 
 const HomePage = () => {
@@ -14,22 +11,7 @@ const HomePage = () => {
 
   const navigate = useNavigate();
 
-  //const movies = useSelector((state) => state.netflix.movies);
-  //const genresLoaded = useSelector((state) => state.netflix.generesLoaded);
-
-  //const dispatch = useDispatch();
-
-  useEffect(() => {
-    //dispatch(getGenres());
-  }, []);
-
   const getCharacters = () => {};
-
-  //   useEffect(() => {
-  //     //if (genresLoaded) {
-  //       //dispatch(fetchMovies({ type: "all" }));
-  //     }
-  //   });
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true); //si no scrolleo
@@ -43,17 +25,17 @@ const HomePage = () => {
         <div className="img-hero">
           <img
             className="background-image"
-            src="https://res.cloudinary.com/ehizeex-shop/image/upload/v1668267540/NetflixApp/avengers-age-of-ultron-team-together-poster-wallpaper-1600x600-92751_84_qvwbif.jpg"
+            src="https://images.unsplash.com/photo-1619768470847-f7db55f5d72e?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="hero"
           />
         </div>
         <div className="container">
           <div className="title">
-            <h1>My Characters</h1>
+            <h1>Mis personajes</h1>
           </div>
         </div>
       </div>
-      {/* <SliderContainer movies={movies} /> */}
+      {/* <SliderContainer movies={movies} */ }
     </HomeContainer>
   );
 };
@@ -61,69 +43,37 @@ const HomePage = () => {
 const HomeContainer = styled.div`
   .hero {
     position: relative;
-    .background-image {
-      filter: brightness(40%);
-    }
-    .img-hero {
-      height: 100%;
-      width: 100%;
-    }
-    .container {
-      position: absolute;
-      bottom: 1rem;
-      .title {
-        h1 {
-          margin-left: 5rem;
-          text-transform: uppercase;
-          font-size: 73px;
-          background: -webkit-linear-gradient(#eee, rgb(128, 13, 13));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        p {
-          margin-bottom: -50px;
-          width: 640px;
-          margin-left: 5rem;
-          font-family: "lexend Deca", sans-serif;
-          color: white;
-        }
-      }
-      .buttons {
-        display: flex;
-        margin: 5rem;
-        gap: 2rem;
-      }
-      .playBtn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: red;
-        border-radius: 1rem;
-        font-size: 1.4rem;
-        gap: 1rem;
-        padding: 0.9rem;
-        padding-left: 2rem;
-        padding-right: 2.4rem;
-        border: none;
-        cursor: pointer;
-      }
-      .moreBtn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        background-color: black;
-        border-radius: 1rem;
-        font-size: 1.4rem;
-        gap: 1rem;
-        padding: 0.9rem;
-        padding-left: 2rem;
-        padding-right: 2.4rem;
-        border: 0.1rem solid white;
-        cursor: pointer;
-      }
-    }
   }
+
+  .img-hero {
+    position: relative;
+    min-height: 100vh; /* Cambia la altura de la imagen del héroe según tus necesidades */
+  }
+
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title h1 {
+    font-size: 48px; /* Tamaño de fuente más grande */
+    color: white; /* Color azul (#0074cc) */
+    text-shadow: 2px 2px 4px rgba(1, 1, 1, 3); /* Sombra de texto */
+  }
+
 `;
+
 
 export default HomePage;

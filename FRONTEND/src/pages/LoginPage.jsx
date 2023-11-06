@@ -17,7 +17,7 @@ const LoginPage = () => {
   const getMyCharacters = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4000/users/${email.current.value}`,
+        `http://localhost:3000/users/${email.current.value}`,
         {
           method: "GET",
           headers: {
@@ -46,7 +46,7 @@ const LoginPage = () => {
   };
 
   const handleLogin = async () => {
-    fetch("http://localhost:4000/login", {
+    fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
         Accept: "Application/json",
@@ -85,6 +85,13 @@ const LoginPage = () => {
   // }); //redirije si ya esta ingresado el usuario
   return (
     <Wrapper>
+      <div className="img-hero">
+          <img
+            className="background-image"
+            src="https://images.unsplash.com/photo-1619768470847-f7db55f5d72e?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="hero"
+          />
+        </div>
       <div className="loginContent">
         <Header />
         <div className="form-wrapper">
@@ -153,11 +160,21 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    background-color: rgba(0, 0, 0, 0.83);
+    background-color: white;
     height: 70vh;
     padding: 2rem;
-    color: white;
+    color: black;
     border-radius: 0.4rem;
+  }
+  .img-hero {
+    position: relative;
+    min-height: 100vh; /* Cambia la altura de la imagen del héroe según tus necesidades */
+  }
+
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .container {
     display: flex;
@@ -171,8 +188,8 @@ const Wrapper = styled.div`
       outline: none;
     }
     button {
-      padding: 0.5rem;
-      background-color: red;
+      padding: 1rem;
+      background-color: blue;
       border: none;
       cursor: pointer;
       border-radius: 0.4rem;

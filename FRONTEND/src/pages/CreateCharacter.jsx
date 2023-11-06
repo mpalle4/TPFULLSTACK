@@ -13,10 +13,22 @@ const CreateCharacter = () => {
     createdBy: "",
   });
 
-  const userId = window.localStorage.getItem("userId").replace(/['"]+/g, "");
+  const navigate = useNavigate();
+  const [userId, setUserId] = useState(""); // Declarar userId aquí
+
+  useEffect(() => {
+    const userId1 = window.localStorage.getItem("userId");
+    if (userId1 !== null) {
+      const userId = userId1.replace(/['"]+/g, "");
+      setUserId(userId); // Actualizar el valor de userId
+      // Continuar con el procesamiento usando userIdWithoutQuotes
+    } else {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const [isScrolled, setIsScrolled] = useState(false);
-
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
@@ -32,11 +44,9 @@ const CreateCharacter = () => {
     createdBy: window.localStorage.getItem("loggedUser").replace(/['"]+/g, ""),
   };
 
-  const navigate = useNavigate();
-
   const handleCreation = async () => {
     console.log(JSON.stringify(characterData));
-    fetch("http://localhost:4000/characters/create", {
+    fetch("http://localhost:3000/characters/create", {
       method: "POST",
       headers: {
         Accept: "Application/json",
@@ -75,7 +85,7 @@ const CreateCharacter = () => {
   };
 
   const updateMyCharacters = async () => {
-    fetch("http://localhost:4000/users/" + userId + "/edit", {
+    fetch("http://localhost:3000/users/" + userId + "/edit", {
       method: "PUT",
       headers: {
         Accept: "Application/json",
@@ -126,26 +136,26 @@ const CreateCharacter = () => {
           <div className="form">
             <input
               type="text"
-              placeholder="name"
+              placeholder="Nombre"
               name="name"
               value={formValues.name}
               onChange={handleInputChange}
             />
             <div className="options">
-              <h3>Face:</h3>
+              <h3>Cara:</h3>
               <label htmlFor="faceImage" className="faceImage">
                 <input
                   type="radio"
                   name="faceImage"
-                  value="https://cdn1.vectorstock.com/i/1000x1000/40/25/cartoon-character-face-boy-children-vector-14814025.jpg"
+                  value="https://png.pngtree.com/png-clipart/20230916/original/pngtree-santa-clause-cartoon-character-face-vector-illustration-illustr-3-clipart-png-image_12249150.png"
                   checked={
                     formValues.faceImage ===
-                    "https://cdn1.vectorstock.com/i/1000x1000/40/25/cartoon-character-face-boy-children-vector-14814025.jpg"
+                    "https://png.pngtree.com/png-clipart/20230916/original/pngtree-santa-clause-cartoon-character-face-vector-illustration-illustr-3-clipart-png-image_12249150.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://cdn1.vectorstock.com/i/1000x1000/40/25/cartoon-character-face-boy-children-vector-14814025.jpg"
+                  src="https://png.pngtree.com/png-clipart/20230916/original/pngtree-santa-clause-cartoon-character-face-vector-illustration-illustr-3-clipart-png-image_12249150.png"
                   alt="Face 1"
                 />
               </label>
@@ -153,15 +163,15 @@ const CreateCharacter = () => {
                 <input
                   type="radio"
                   name="faceImage"
-                  value="https://cdn4.vectorstock.com/i/1000x1000/40/83/cartoon-character-face-boy-children-vector-14814083.jpg"
+                  value="https://images.vexels.com/media/users/3/132727/isolated/lists/d30d8aa7ae9084c7b110493c3effa568-personaje-de-cabeza-de-dibujos-animados-de-mujer.png"
                   checked={
                     formValues.faceImage ===
-                    "https://cdn4.vectorstock.com/i/1000x1000/40/83/cartoon-character-face-boy-children-vector-14814083.jpg"
+                    "https://images.vexels.com/media/users/3/132727/isolated/lists/d30d8aa7ae9084c7b110493c3effa568-personaje-de-cabeza-de-dibujos-animados-de-mujer.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://cdn4.vectorstock.com/i/1000x1000/40/83/cartoon-character-face-boy-children-vector-14814083.jpg"
+                  src="https://images.vexels.com/media/users/3/132727/isolated/lists/d30d8aa7ae9084c7b110493c3effa568-personaje-de-cabeza-de-dibujos-animados-de-mujer.png"
                   alt="Face 2"
                 />
               </label>
@@ -169,34 +179,34 @@ const CreateCharacter = () => {
                 <input
                   type="radio"
                   name="faceImage"
-                  value="https://static.vecteezy.com/system/resources/previews/019/837/381/non_2x/cute-baby-girl-face-collection-cartoon-character-png.png"
+                  value="https://static.vecteezy.com/system/resources/previews/028/209/596/non_2x/happy-student-boy-character-face-3d-illustration-icon-free-png.png"
                   checked={
                     formValues.faceImage ===
-                    "https://static.vecteezy.com/system/resources/previews/019/837/381/non_2x/cute-baby-girl-face-collection-cartoon-character-png.png"
+                    "https://static.vecteezy.com/system/resources/previews/028/209/596/non_2x/happy-student-boy-character-face-3d-illustration-icon-free-png.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://static.vecteezy.com/system/resources/previews/019/837/381/non_2x/cute-baby-girl-face-collection-cartoon-character-png.png"
+                  src="https://static.vecteezy.com/system/resources/previews/028/209/596/non_2x/happy-student-boy-character-face-3d-illustration-icon-free-png.png"
                   alt="Face 3"
                 />
               </label>
             </div>
             <div className="options">
-              <h3>Upper body:</h3>
+              <h3>Torso:</h3>
               <label htmlFor="upperBody" className="upperBody">
                 <input
                   type="radio"
                   name="upperBody"
-                  value="https://cdn4.vectorstock.com/i/1000x1000/12/48/child-t-shirt-icon-cartoon-style-vector-18781248.jpg"
+                  value="https://images.vexels.com/media/users/3/210392/isolated/preview/4b717e6330a35159c58df4a566682900-camiseta-argentina-numero-10-dibujada-a-mano.png"
                   checked={
                     formValues.upperBody ===
-                    "https://cdn4.vectorstock.com/i/1000x1000/12/48/child-t-shirt-icon-cartoon-style-vector-18781248.jpg"
+                    "https://images.vexels.com/media/users/3/210392/isolated/preview/4b717e6330a35159c58df4a566682900-camiseta-argentina-numero-10-dibujada-a-mano.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://cdn4.vectorstock.com/i/1000x1000/12/48/child-t-shirt-icon-cartoon-style-vector-18781248.jpg"
+                  src="https://images.vexels.com/media/users/3/210392/isolated/preview/4b717e6330a35159c58df4a566682900-camiseta-argentina-numero-10-dibujada-a-mano.png"
                   alt="Upper body 1"
                 />
               </label>
@@ -204,15 +214,15 @@ const CreateCharacter = () => {
                 <input
                   type="radio"
                   name="upperBody"
-                  value="https://www.shutterstock.com/image-vector/cartoon-vector-illustration-children-tshirt-260nw-1918560785.jpg"
+                  value="https://png.pngtree.com/png-clipart/20220801/ourmid/pngtree-cartoon-black-t-shirt-png-image_6094390.png"
                   checked={
                     formValues.upperBody ===
-                    "https://www.shutterstock.com/image-vector/cartoon-vector-illustration-children-tshirt-260nw-1918560785.jpg"
+                    "https://png.pngtree.com/png-clipart/20220801/ourmid/pngtree-cartoon-black-t-shirt-png-image_6094390.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://www.shutterstock.com/image-vector/cartoon-vector-illustration-children-tshirt-260nw-1918560785.jpg"
+                  src="https://png.pngtree.com/png-clipart/20220801/ourmid/pngtree-cartoon-black-t-shirt-png-image_6094390.png"
                   alt="Upper body 2"
                 />
               </label>
@@ -220,34 +230,34 @@ const CreateCharacter = () => {
                 <input
                   type="radio"
                   name="upperBody"
-                  value="https://img.freepik.com/premium-vector/illustration-shirt-sport-shirt-vector-design-yellow-white-color-shirt-logo-design_678696-566.jpg?size=338&ext=jpg&ga=GA1.1.386372595.1698451200&semt=ais"
+                  value="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/58252/running-shirt-emoji-clipart-md.png"
                   checked={
                     formValues.upperBody ===
-                    "https://img.freepik.com/premium-vector/illustration-shirt-sport-shirt-vector-design-yellow-white-color-shirt-logo-design_678696-566.jpg?size=338&ext=jpg&ga=GA1.1.386372595.1698451200&semt=ais"
+                    "https://creazilla-store.fra1.digitaloceanspaces.com/emojis/58252/running-shirt-emoji-clipart-md.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://img.freepik.com/premium-vector/illustration-shirt-sport-shirt-vector-design-yellow-white-color-shirt-logo-design_678696-566.jpg?size=338&ext=jpg&ga=GA1.1.386372595.1698451200&semt=ais"
+                  src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/58252/running-shirt-emoji-clipart-md.png"
                   alt="Upper body 3"
                 />
               </label>
             </div>
             <div className="options">
-              <h3>Lower body:</h3>
+              <h3>Pantalones:</h3>
               <label htmlFor="lowerBody" className="lowerBody">
                 <input
                   type="radio"
                   name="lowerBody"
-                  value="https://cdn3.vectorstock.com/i/1000x1000/07/02/trousers-for-kids-poster-vector-21590702.jpg"
+                  value="https://cdn-icons-png.flaticon.com/512/26/26711.png"
                   checked={
                     formValues.lowerBody ===
-                    "https://cdn3.vectorstock.com/i/1000x1000/07/02/trousers-for-kids-poster-vector-21590702.jpg"
+                    "https://cdn-icons-png.flaticon.com/512/26/26711.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://cdn3.vectorstock.com/i/1000x1000/07/02/trousers-for-kids-poster-vector-21590702.jpg"
+                  src="https://cdn-icons-png.flaticon.com/512/26/26711.png"
                   alt="Lower body 1"
                 />
               </label>
@@ -255,15 +265,15 @@ const CreateCharacter = () => {
                 <input
                   type="radio"
                   name="lowerBody"
-                  value="https://image.made-in-china.com/202f0j00uHrfWtUyasqj/Custom-Autumn-Girls-Trousers-Baby-Pure-Cotton-Cartoon-Print-Kids-Long-Pants.jpg"
+                  value="https://cdn-icons-png.flaticon.com/512/2151/2151350.png"
                   checked={
                     formValues.lowerBody ===
-                    "https://image.made-in-china.com/202f0j00uHrfWtUyasqj/Custom-Autumn-Girls-Trousers-Baby-Pure-Cotton-Cartoon-Print-Kids-Long-Pants.jpg"
+                    "https://cdn-icons-png.flaticon.com/512/2151/2151350.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://image.made-in-china.com/202f0j00uHrfWtUyasqj/Custom-Autumn-Girls-Trousers-Baby-Pure-Cotton-Cartoon-Print-Kids-Long-Pants.jpg"
+                  src="https://cdn-icons-png.flaticon.com/512/2151/2151350.png"
                   alt="Lower body 2"
                 />
               </label>
@@ -271,34 +281,34 @@ const CreateCharacter = () => {
                 <input
                   type="radio"
                   name="lowerBody"
-                  value="https://image.made-in-china.com/202f0j00bIkRsUCcfjqv/Baby-Girls-Long-Printed-Pants-New-Fashion-Children-Cartoon-Flower-Clothes-Bottoms-Leggings-Trousers.jpg"
+                  value="https://cdn-icons-png.flaticon.com/512/3531/3531826.png"
                   checked={
                     formValues.lowerBody ===
-                    "https://image.made-in-china.com/202f0j00bIkRsUCcfjqv/Baby-Girls-Long-Printed-Pants-New-Fashion-Children-Cartoon-Flower-Clothes-Bottoms-Leggings-Trousers.jpg"
+                    "https://cdn-icons-png.flaticon.com/512/3531/3531826.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://image.made-in-china.com/202f0j00bIkRsUCcfjqv/Baby-Girls-Long-Printed-Pants-New-Fashion-Children-Cartoon-Flower-Clothes-Bottoms-Leggings-Trousers.jpg"
+                  src="https://cdn-icons-png.flaticon.com/512/3531/3531826.png"
                   alt="Lower body 3"
                 />
               </label>
             </div>
             <div className="options">
-              <h3>Shoes:</h3>
+              <h3>Zapatillas:</h3>
               <label htmlFor="shoes" className="shoes">
                 <input
                   type="radio"
                   name="shoes"
-                  value="https://img.freepik.com/premium-vector/red-sneakers-pair-cute-cartoon-kid-shoes_533410-1583.jpg"
+                  value="https://images.vexels.com/media/users/3/319649/isolated/preview/ef5558225bf35079e30feb7b327ff2ba-blue-and-purple-soccer-cleats-botines-de-futbol-azules-y-morados-chuteiras-de-futebol-azuis-e-roxas-blaue-und-lila-fuballschuhe.png"
                   checked={
                     formValues.shoes ===
-                    "https://img.freepik.com/premium-vector/red-sneakers-pair-cute-cartoon-kid-shoes_533410-1583.jpg"
+                    "https://images.vexels.com/media/users/3/319649/isolated/preview/ef5558225bf35079e30feb7b327ff2ba-blue-and-purple-soccer-cleats-botines-de-futbol-azules-y-morados-chuteiras-de-futebol-azuis-e-roxas-blaue-und-lila-fuballschuhe.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://img.freepik.com/premium-vector/red-sneakers-pair-cute-cartoon-kid-shoes_533410-1583.jpg"
+                  src="https://images.vexels.com/media/users/3/319649/isolated/preview/ef5558225bf35079e30feb7b327ff2ba-blue-and-purple-soccer-cleats-botines-de-futbol-azules-y-morados-chuteiras-de-futebol-azuis-e-roxas-blaue-und-lila-fuballschuhe.png"
                   alt="Shoes 1"
                 />
               </label>
@@ -306,15 +316,15 @@ const CreateCharacter = () => {
                 <input
                   type="radio"
                   name="shoes"
-                  value="https://cdn.pixabay.com/photo/2022/06/02/19/11/pink-baby-shoes-7238781_1280.png"
+                  value="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/57668/ballet-shoes-emoji-clipart-md.png"
                   checked={
                     formValues.shoes ===
-                    "https://cdn.pixabay.com/photo/2022/06/02/19/11/pink-baby-shoes-7238781_1280.png"
+                    "https://creazilla-store.fra1.digitaloceanspaces.com/emojis/57668/ballet-shoes-emoji-clipart-md.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://cdn.pixabay.com/photo/2022/06/02/19/11/pink-baby-shoes-7238781_1280.png"
+                  src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/57668/ballet-shoes-emoji-clipart-md.png"
                   alt="Shoes 2"
                 />
               </label>
@@ -322,20 +332,20 @@ const CreateCharacter = () => {
                 <input
                   type="radio"
                   name="shoes"
-                  value="https://static.vecteezy.com/system/resources/previews/004/715/428/non_2x/a-pair-of-red-textile-sneakers-with-a-rubber-toe-and-loose-laces-hand-drawn-illustration-in-flat-cartoon-stile-shoes-of-modern-skaters-for-training-isolated-object-free-vector.jpg"
+                  value="https://png.pngtree.com/png-clipart/20230819/original/pngtree-cartoon-modern-sneakers-accessory-activity-picture-image_8042649.png"
                   checked={
                     formValues.shoes ===
-                    "https://static.vecteezy.com/system/resources/previews/004/715/428/non_2x/a-pair-of-red-textile-sneakers-with-a-rubber-toe-and-loose-laces-hand-drawn-illustration-in-flat-cartoon-stile-shoes-of-modern-skaters-for-training-isolated-object-free-vector.jpg"
+                    "https://png.pngtree.com/png-clipart/20230819/original/pngtree-cartoon-modern-sneakers-accessory-activity-picture-image_8042649.png"
                   }
                   onChange={handleInputChange}
                 />
                 <img
-                  src="https://static.vecteezy.com/system/resources/previews/004/715/428/non_2x/a-pair-of-red-textile-sneakers-with-a-rubber-toe-and-loose-laces-hand-drawn-illustration-in-flat-cartoon-stile-shoes-of-modern-skaters-for-training-isolated-object-free-vector.jpg"
+                  src="https://png.pngtree.com/png-clipart/20230819/original/pngtree-cartoon-modern-sneakers-accessory-activity-picture-image_8042649.png"
                   alt="Shoes 3"
                 />
               </label>
             </div>
-            <button onClick={handleCreation}>Create character</button>
+            <button onClick={handleCreation}>Crear nuevo personaje</button>
           </div>
         </div>
       </div>
@@ -349,7 +359,6 @@ const Container = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.79);
     height: 100vh;
     width: 100vw;
     grid-template-columns: 15vh 85vh;
@@ -370,9 +379,9 @@ const Container = styled.div`
   .text {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    text-align: right;
     font-size: 2rem;
-    color: white;
+    color: black;
     h1 {
       padding: 0rem 20rem;
     }
@@ -385,16 +394,17 @@ const Container = styled.div`
   }
   .form {
     display: grid;
-    width: 60%;
+    width: 80%;
     margin-top: 1.5rem;
     grid-template-columns: "1fr 1fr";
   }
   .options {
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta el ancho de las columnas según tus necesidades */
+    justify-content: center; /* Centra horizontalmente los elementos */
+    gap: 10px; /* Agrega espacio entre los elementos si lo deseas */
   }
+  
   input {
     color: black;
     padding: 0.8rem;
@@ -415,14 +425,17 @@ const Container = styled.div`
   }
 
   button {
-    padding: 0.5rem 1rem;
-    background-color: red;
+    padding: 1rem 1rem;
+    background-color: black;
     border: none;
     cursor: pointer;
     color: white;
-    font-size: 1.05rem;
+    font-size: 1.5rem; /* Cambia el tamaño de fuente según tus necesidades */
     width: 20rem;
+    display: block; /* Hacer que el botón sea un bloque */
+    margin: 0 auto; /* Centrar horizontalmente */
   }
+
 
   img {
     width: 100px;

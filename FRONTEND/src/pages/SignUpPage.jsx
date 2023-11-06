@@ -29,7 +29,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
 
   const handleSignIn = async () => {
-    fetch("http://localhost:4000/users/create", {
+    fetch("http://localhost:3000/users/create", {
       method: "POST",
       headers: {
         Accept: "Application/json",
@@ -55,12 +55,15 @@ const SignUpPage = () => {
       });
   };
 
-  // onAuthStateChanged(firebaseAuth, (currentUser) => {
-  //   if (currentUser) navigate("/");
-  // });
-
   return (
     <Container>
+      <div className="img-hero">
+          <img
+            className="background-image"
+            src="https://images.unsplash.com/photo-1619768470847-f7db55f5d72e?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="hero"
+          />
+        </div>
       <div className="content">
         <Header login />
         <div className="body">
@@ -121,7 +124,7 @@ const SignUpPage = () => {
               }
             />
 
-            <button onClick={handleSignIn}>Sign Up</button>
+            <button onClick={handleSignIn}>Registrarse</button>
           </div>
         </div>
       </div>
@@ -130,12 +133,19 @@ const SignUpPage = () => {
 };
 
 const Container = styled.div`
-  position: relative;
+  .img-hero {
+    position: relative;
+    min-height: 100vh; 
+  }
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   .content {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.79);
     height: 100vh;
     width: 100vw;
     grid-template-columns: 15vh 85vh;
@@ -169,7 +179,7 @@ const Container = styled.div`
     grid-template-columns: "1fr 1fr";
   }
   input {
-    color: black;
+    color: blue;
     padding: 1.5rem;
     font-size: 1.2rem;
     width: 45rem;
@@ -178,9 +188,10 @@ const Container = styled.div`
     }
   }
 
+
   button {
     padding: 0.5rem 1rem;
-    background-color: red;
+    background-color: blue;
     border: none;
     cursor: pointer;
     color: white;
