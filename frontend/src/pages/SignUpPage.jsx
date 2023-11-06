@@ -23,6 +23,7 @@ const SignUpPage = () => {
     isActive: true,
     roles: "user",
     password: password.current.value,
+    myCharacters: 0,
   };
 
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const SignUpPage = () => {
       .then((response) => {
         response.json();
         alert("Usuario creado correctamente");
+        console.log(JSON.stringify(userData));
         //window.open("login.html");
         navigate("/login");
         //this.close();

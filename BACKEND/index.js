@@ -42,7 +42,8 @@ app.post("/login", verify ,async (req, res) => {
   try {
     const result = await AuthController.login(email, password);
     if (result) {
-      res.status(200).json(result);
+      const { token, user } = await AuthController.login(email, password);
+      res.status(200).json({ token, user });
     } else {
       res.status(401).send("No puede estar aqui");
     }

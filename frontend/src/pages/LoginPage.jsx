@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import styled from "styled-components";
@@ -14,6 +14,37 @@ const LoginPage = () => {
     password: password.current.value,
   };
 
+  const getMyCharacters = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/users/${email.current.value}`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json", // Cambiado a "application/json" en lugar de "Application/json"
+            "Content-Type": "application/json", // Cambiado a "application/json" en lugar de "Application/json"
+          },
+        }
+      );
+
+      console.log(response.status);
+
+      if (response.status !== 401 && response.status !== 500) {
+        const data = await response.json(); // Esperar la resolución de la promesa
+        console.log("data");
+        console.log(data);
+        window.localStorage.setItem(
+          "lastId",
+          JSON.stringify(data.myCharacters)
+        );
+        window.localStorage.setItem("userId", JSON.stringify(data.id));
+      }
+    } catch (err) {
+      console.log("Error al obtener el usuario", err);
+      alert("Error al obtener el usuario " + err);
+    }
+  };
+
   const handleLogin = async () => {
     fetch("http://localhost:3000/login", {
       method: "POST",
@@ -24,33 +55,29 @@ const LoginPage = () => {
 
       body: JSON.stringify(loginData),
     })
-    .then((response) => {
-      console.log(response.status);
-      if (response.status === 200) {
-        // Recibiste una respuesta exitosa (código 200)
-        return response.text();
-      } else if (response.status === 401) {
-        console.log("Error al logearse");
-        alert("Error al logearse");
-        throw new Error("Error al logearse");
-      } else {
-        console.log("Error de servidor");
-        alert("Error de servidor");
-        throw new Error("Error de servidor");
-      }
-    })
-    .then((data) => {
-      if (data) {
-        localStorage.setItem("token", data); // Almacenar el token directamente
-        console.log("Token guardado en localStorage:", data);
-        alert("Inicio de sesión correcto");
-        navigate("/"); // Redirige a la página principal o a donde necesites ir
-      } else {
-        console.error("Token no encontrado en la respuesta");
-        alert("Inicio de sesión incorrecto");
-      }
-    })
-    
+      .then((response) => {
+        console.log(response.status);
+        if (response.status !== 401 && response.status !== 500) {
+          response.json();
+          alert("Login correcto");
+          getMyCharacters();
+          navigate("/");
+          window.localStorage.setItem(
+            "loggedUser",
+            JSON.stringify(email.current.value)
+          );
+        } else {
+          console.log("Error al logearse");
+          alert("Error al logearse ");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log("Error al logearse", err);
+        alert("Error al logearse " + err);
+      });
   };
 
   // onAuthStateChanged(firebaseAuth, (currentUser) => {

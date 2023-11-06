@@ -16,7 +16,7 @@ const login = async (email, password) => {
 
   if (result) {
     const token = jwt.sign({ email: result.email, userId: result._id }, "fgdgbrfeer6g1df23g86ef2gs");
-    return token;
+    return {token, user: result};
   }
 
   return null;
