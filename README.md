@@ -1,55 +1,66 @@
-# Trabajo Práctico Integrador - Desarrollo Web Full Stack
+# tpFullstack
 
-## Descripción del Proyecto
+<h1> PERSONAJES PARA NIÑOS </h1>.
 
-Este proyecto corresponde al Trabajo Práctico Integrador para la materia de Desarrollo Web Full Stack en la Universidad de Palermo. Se centra en el desarrollo de una aplicación API REST utilizando Node.js y MongoDB, enfocada en la creación y gestión de personajes para niños.
+<h3>MODALIDAD DE TRABAJO</h3>
 
-## Modalidad de Trabajo
+Para la primera entrega desarrollaremos la estructura del Backend, luego para la segunda la estructura del Frontend
 
-Para la primera entrega, se desarrollará la estructura del Backend. Posteriormente, en la segunda entrega, se trabajará en la estructura del Frontend.
+<h3>TECNOLOGÍAS</h3>
 
-## Tecnologías Utilizadas
+Se desarrollará una aplicación del tipo API REST con Node.js.
+Para la persistencia de datos se utilizará la base de datos no relacional MongoDB, utilizando la versión Atlas para no descargar el motor de base de datos localmente.
 
-- Node.js para el desarrollo del Backend
-- MongoDB como base de datos no relacional, utilizando la versión Atlas para evitar la necesidad de una instalación local del motor de base de datos.
-- Paquetes utilizados: Express, Mongoose, Dotenv, Cors.
+Paquetes a utilizar:
+Express
+Mongoose
+Dotenv
+Cors
 
-## Estructura del Proyecto
+<h3>ESTRUCTURA DEL PROYECTO</h3>
 
-### Backend
+Backend
+Se utilizará el patrón Modelo Vista Controlador
 
-El backend seguirá el patrón Modelo Vista Controlador.
+Modelos:
 
-#### Modelos
+user
 
-- User
-- Character
+character
 
-#### Controladores
+Controladores:
 
-- UserController
-- CharacterController
+UserController
 
-#### Endpoints para el Usuario
+CharacterController
 
-- **POST** `/login`: Iniciar sesión del usuario
-- **GET** `/users`: Obtener todos los usuarios
-- **GET** `/users/:id`: Obtener información de un usuario por su ID
-- **POST** `/users/create`: Crear un usuario
-- **PUT** `/users/:id/edit`: Editar un usuario
-- **DELETE** `/users/:id/delete`: Eliminar un usuario
-- **PUT** `/users/:id/editRoles`: Editar los roles de un usuario
-- **PUT** `/users/:id/editActive`: Editar el parámetro `isActive` de un usuario
+Endpoints:
 
-#### Endpoints para los Personajes
+Para cada uno de los modelos se generarán los endpoints que permitirán la realización del CRUD
 
-- **GET** `/characters`: Obtener todos los personajes
-- **GET** `/characters/:id`: Obtener información de un personaje por su ID
-- **POST** `/characters/create`: Crear un personaje
-- **PUT** `/characters/:id/edit`: Editar un personaje
-- **DELETE** `/characters/:id/delete`: Eliminar un personaje
+GET, POST, PUT, DELETE
 
-## Consideraciones Funcionales
+ENPOINTS PARA EL USUARIO:
 
-El sistema permitirá el CRUD de usuarios y la creación de personajes, incluyendo la elección de su vestimenta. Los últimos personajes creados podrán ser visualizados.
+<br>/login: POST para que el usuario inice sesión<br>
+<br>/users: GET de todos los usuarios<br>
+<br>/users/:id: GET de info de un usuario<br>
+<br>/users/create: POST para crear un usuario<br>
+<br>/users/:id/edit: PUT para editar un usuario<br>
+<br>/users/:id/delete: DELETE para eliminar usuario<br>
+<br>/users/:id/editRoles: PUT para editar los roles de un usuario<br>
+<br>/users/:id/editActive: PUT para editar el parámetro isActive del usuario<br>
 
+ENDPOINTS PARA LOS PERSONAJES:
+
+<br>/characters: GET de todos los personajes<br>
+<br>/characters/:id: GET de la info de un personaje<br>
+<br>/characters/create: POST para crear un personaje<br>
+<br>/characters/:id/edit: PUT para editar el personaje<br>
+<br>/characters/:id/delete: DELETE para eliminar el personaje<br>
+
+<h3>CONSIDERACIONES FUNCIONALES</h3>
+
+El sistema perimitira el CRUD de usuarios, creando personajes y eligiendo su vestimenta.
+
+Se deberá poder ver los últimos personajes creados
