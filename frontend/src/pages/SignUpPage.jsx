@@ -28,7 +28,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
 
   const handleSignIn = async () => {
-    fetch("http://localhost:4000/users/create", {
+    fetch("http://localhost:3000/users/create", {
       method: "POST",
       headers: {
         Accept: "Application/json",

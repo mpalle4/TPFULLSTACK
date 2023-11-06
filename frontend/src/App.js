@@ -12,7 +12,7 @@ function App() {
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/signup" element={<SignUpPage />} />
         <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/character/create" element={<CreateCharacter />} />
+        <Route exact path="/characters/create" element={<CreateCharacter />} />
       </Routes>
     </BrowserRouter>
   );

@@ -15,7 +15,7 @@ const LoginPage = () => {
   };
 
   const handleLogin = async () => {
-    fetch("http://localhost:4000/login", {
+    fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
         Accept: "Application/json",
@@ -24,26 +24,33 @@ const LoginPage = () => {
 
       body: JSON.stringify(loginData),
     })
-      .then((response) => {
-        console.log(response.status);
-        if (response.status !== 401 && response.status !== 500) {
-          response.json();
-          alert("Login correcto");
-          //window.open("login.html");
-          navigate("/");
-          //this.close();
-        } else {
-          console.log("Error al logearse");
-          alert("Error al logearse ");
-        }
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log("Error al logearse", err);
-        alert("Error al logearse " + err);
-      });
+    .then((response) => {
+      console.log(response.status);
+      if (response.status === 200) {
+        // Recibiste una respuesta exitosa (código 200)
+        return response.text();
+      } else if (response.status === 401) {
+        console.log("Error al logearse");
+        alert("Error al logearse");
+        throw new Error("Error al logearse");
+      } else {
+        console.log("Error de servidor");
+        alert("Error de servidor");
+        throw new Error("Error de servidor");
+      }
+    })
+    .then((data) => {
+      if (data) {
+        localStorage.setItem("token", data); // Almacenar el token directamente
+        console.log("Token guardado en localStorage:", data);
+        alert("Inicio de sesión correcto");
+        navigate("/"); // Redirige a la página principal o a donde necesites ir
+      } else {
+        console.error("Token no encontrado en la respuesta");
+        alert("Inicio de sesión incorrecto");
+      }
+    })
+    
   };
 
   // onAuthStateChanged(firebaseAuth, (currentUser) => {

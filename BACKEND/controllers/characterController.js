@@ -1,5 +1,5 @@
 require("mongoose");
-const Character = require("../models/charaterModel");
+const Character = require("../models/characterModel");
 const Usr = require("../models/userModel");
 
 const getAllCharacters = async (limit, offset) => {

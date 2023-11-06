@@ -3,6 +3,12 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopNav from "../components/TopNav";
 
+const token = localStorage.getItem("token");
+const headers = {
+  Authorization: `Bearer ${token}`,
+  "Content-Type": "application/json",
+};
+
 const CreateCharacter = () => {
   const [formValues, setFormValues] = useState({
     name: "",
@@ -31,13 +37,9 @@ const CreateCharacter = () => {
 
   const handleCreation = async () => {
     console.log(JSON.stringify(characterData));
-    fetch("http://localhost:4000/characters/create", {
+    fetch("http://localhost:3000/characters/create",{
       method: "POST",
-      headers: {
-        Accept: "Application/json",
-        "Content-type": "Application/json",
-      },
-
+      headers: headers,
       body: JSON.stringify(characterData),
     })
       .then((response) => {

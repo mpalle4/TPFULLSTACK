@@ -1,47 +1,45 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const usrSchema = new Schema(
+const characterSchema = new Schema(
   {
-    email: {
+    characterId: {
       type: String,
       required: true,
-      index: { unique: true, dropDups: true },
     },
     name: {
       type: String,
       required: true,
     },
-    lastname: {
+    faceImage: {
       type: String,
       required: true,
     },
-    isActive: {
-      type: Boolean,
-      required: true,
-    },
-    roles: {
-      type: Array,
-      required: true,
-      default: ["user"],
-    },
-    password: {
+    upperBody: {
       type: String,
       required: true,
     },
-    characterIdCounter: {
-      type: Number,
-      required: false,
-      default:0,
-    }
+    lowerBody: {
+      type: String,
+      required: true,
+    },
+    shoes: {
+      type: String,
+      required: true,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "usr", //
+      required: true,
+    },
   },
   { timestamps: true }
 ).set("toJSON", {
   transform: (document, object) => {
     object.id = document.id;
     delete object._id;
-    delete object.password;
+    delete object.characterID;
   },
 });
 
-const Usr = mongoose.model("usr", usrSchema);
-module.exports = Usr;
+const Character = mongoose.model("character", characterSchema);
+module.exports = Character;

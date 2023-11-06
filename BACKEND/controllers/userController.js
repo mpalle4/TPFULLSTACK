@@ -12,7 +12,7 @@ const getUser = async (id) => {
   return user;
 };
 
-const addUser = async (name, lastname, email, isActive, password) => {
+const addUser = async (name, lastname, email, isActive, password, characterIdCounter) => {
   let existUser = await Usr.findOne({ email: email });
   if (!existUser) {
     const cryptoPass = require("crypto")
@@ -26,6 +26,7 @@ const addUser = async (name, lastname, email, isActive, password) => {
       email: email,
       isActive: isActive,
       password: cryptoPass,
+      characterIdCounter: characterIdCounter,
     });
 
     let user = await usr.save();

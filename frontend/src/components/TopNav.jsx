@@ -17,7 +17,7 @@ const TopNav = ({ isScrolled }) => {
     },
     {
       name: "Create character",
-      link: "/character/create",
+      link: "/characters/create",
     },
     {
       name: "Trending",
