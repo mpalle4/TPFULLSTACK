@@ -61,10 +61,10 @@ const TopNav = ({ isScrolled }) => {
 const NavContainer = styled.div`
   .notScroll {
     display: flex;
+    background-color: black;
   }
   .scrolled {
     display: flex;
-    background-color: black;
   }
   nav {
     position: sticky;

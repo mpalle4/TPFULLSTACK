@@ -8,15 +8,42 @@ import SliderContainer from "../components/SliderContainer";
 
 const HomePage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [characters, setCharacters] = useState([]);
 
   const navigate = useNavigate();
-
-  const getCharacters = () => {};
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true); //si no scrolleo
     return () => (window.onscroll = null);
   };
+
+  const getCharacters = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/characters", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log(response.status);
+
+      if (response.status !== 401 && response.status !== 500) {
+        const data = await response.json();
+        console.log("data");
+        console.log(data);
+        setCharacters(data);
+      }
+    } catch (err) {
+      console.log("Error al obtener el usuario", err);
+      //alert("Error al obtener el usuario " + err);
+    }
+  };
+
+  useEffect(() => {
+    getCharacters();
+  });
 
   return (
     <HomeContainer>
@@ -30,10 +57,40 @@ const HomePage = () => {
           />
         </div>
         <div className="container">
-          <div className="title">
-            <h1>Mis personajes</h1>
+          <div className="charactersMap">
+            <ul className="character-list">
+              {characters.map((character) => (
+                <div className="character-item" key={character.id}>
+                  <li className="characterName">{character.name}</li>
+                  <li>
+                    <img
+                      className="body-parts"
+                      src={character.faceImage}
+                      alt=""
+                    />
+                  </li>
+                  <li>
+                    <img
+                      className="body-parts"
+                      src={character.upperBody}
+                      alt=""
+                    />
+                  </li>
+                  <li>
+                    <img
+                      className="body-parts"
+                      src={character.lowerBody}
+                      alt=""
+                    />
+                  </li>
+                  <li>
+                    <img className="body-parts" src={character.shoes} alt="" />
+                  </li>
+                </div>
+              ))}
+            </ul>
           </div>
-        </div>
+          </div>
       </div>
       {/* <SliderContainer movies={movies} */ }
     </HomeContainer>
@@ -41,6 +98,39 @@ const HomePage = () => {
 };
 
 const HomeContainer = styled.div`
+.characterName {
+  color: white;
+  margin-bottom: 10px;
+}
+.charactersMap {
+  display: flex;
+  flex-wrap: wrap; /* Para permitir que los elementos se envuelvan en columnas */
+  gap: 20px; /* Espacio entre elementos */
+}
+
+.character-list {
+  list-style: none; /* Quita los puntos de la lista */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap; /* Para permitir que los elementos se envuelvan en columnas */
+  gap: 20px; /* Espacio entre elementos */
+}
+
+.character-item {
+  border: 1px solid black;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  width: calc(50% - 20px); /* Ancho del 25% con espacio entre elementos */
+  box-sizing: border-box;
+}
+
+.body-parts {
+  margin-right: 70px;
+  max-width: 100px;
+  height: auto;
+}
+
   .hero {
     position: relative;
   }

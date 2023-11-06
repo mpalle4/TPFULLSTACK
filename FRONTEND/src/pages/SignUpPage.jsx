@@ -40,7 +40,7 @@ const SignUpPage = () => {
     })
       .then((response) => {
         response.json();
-        alert("Usuario creado correctamente");
+        //alert("Usuario creado correctamente");
         console.log(JSON.stringify(userData));
         //window.open("login.html");
         navigate("/login");
@@ -51,7 +51,7 @@ const SignUpPage = () => {
       })
       .catch((err) => {
         console.log("Error al crear usuario", err);
-        alert("Error al crear el usuario " + err);
+        //alert("Error al crear el usuario " + err);
       });
   };
 
@@ -68,12 +68,12 @@ const SignUpPage = () => {
         <Header login />
         <div className="body">
           <div className="text">
-            <h1>Crea tu propio personaje</h1>
+            <h1>Crea tu usuario</h1>
           </div>
           <div className="form">
             <input
               type="email"
-              placeholder="email"
+              placeholder="Email"
               name="email"
               value={formValues.email}
               ref={email}
@@ -86,7 +86,7 @@ const SignUpPage = () => {
             />
             <input
               type="name"
-              placeholder="name"
+              placeholder="Nombre"
               name="name"
               value={formValues.name}
               ref={name}
@@ -99,7 +99,7 @@ const SignUpPage = () => {
             />
             <input
               type="lastname"
-              placeholder="lastname"
+              placeholder="Apellido"
               name="lastname"
               value={formValues.lastname}
               ref={lastname}
@@ -112,7 +112,7 @@ const SignUpPage = () => {
             />
             <input
               type="password"
-              placeholder="password"
+              placeholder="Contraseña"
               name="password"
               value={formValues.password}
               ref={password}

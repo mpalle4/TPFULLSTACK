@@ -64,7 +64,7 @@ const CreateCharacter = () => {
           response.status !== 404
         ) {
           response.json();
-          alert("Personaje creado correctamente");
+          //alert("Personaje creado correctamente");
           //window.open("login.html");
           updateMyCharacters();
           console.log(characterData.characterId);
@@ -72,7 +72,7 @@ const CreateCharacter = () => {
           //this.close();
         } else {
           console.log("Error al crearse el personaje");
-          alert("Error al crearse el personaje ");
+          //alert("Error al crearse el personaje ");
         }
       })
       .then((data) => {

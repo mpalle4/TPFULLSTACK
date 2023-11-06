@@ -59,7 +59,7 @@ const LoginPage = () => {
         console.log(response.status);
         if (response.status !== 401 && response.status !== 500) {
           response.json();
-          alert("Login correcto");
+          //alert("Login correcto");
           getMyCharacters();
           navigate("/");
           window.localStorage.setItem(
@@ -68,7 +68,7 @@ const LoginPage = () => {
           );
         } else {
           console.log("Error al logearse");
-          alert("Error al logearse ");
+          //alert("Error al logearse ");
         }
       })
       .then((data) => {
@@ -76,7 +76,7 @@ const LoginPage = () => {
       })
       .catch((err) => {
         console.log("Error al logearse", err);
-        alert("Error al logearse " + err);
+        //alert("Error al logearse " + err);
       });
   };
 
@@ -142,7 +142,7 @@ const Wrapper = styled.div`
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.6);
-    height: 100vh;
+    height: 137vh;
     width: 100vw;
     grid-template-columns: 15vh 85vh;
   }
