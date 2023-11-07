@@ -33,9 +33,6 @@ app.post("/", (req, res) => {
   res.send("Llamada post");
 });
 
-//-------------------------------------------------------------------------------------------------------
-// LOGIN
-//-------------------------------------------------------------------------------------------------------
 app.post("/login", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -51,11 +48,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-//-------------------------------------------------------------------------------------------------------
-// ENDPOINTS USER
-//-------------------------------------------------------------------------------------------------------
 
-//Get de todos los usuarios
 app.get("/users", async (req, res) => {
   let limit = req.query.limit;
   let offset = req.query.offset;
@@ -68,10 +61,8 @@ app.get("/users", async (req, res) => {
   }
 });
 
-//Get info de un usuario
 app.get(
-  "/users/:id",
-  /*Middleware.verify*/ async (req, res) => {
+  "/users/:id", async (req, res) => {
     let userId = req.params.id;
 
     try {
@@ -83,10 +74,8 @@ app.get(
   }
 );
 
-//Creo nuevo usuario
 app.post(
-  "/users/create",
-  /*Middleware.verify*/ async (req, res) => {
+  "/users/create", async (req, res) => {
     let name = req.body.name;
     let lastname = req.body.lastname;
     let email = req.body.email;
@@ -114,10 +103,8 @@ app.post(
   }
 );
 
-//Edito usuario
 app.put(
-  "/users/:id/edit",
-  /*Middleware.verify*/ async (req, res) => {
+  "/users/:id/edit",async (req, res) => {
     const user = { _id: req.params.id, ...req.body };
 
     try {
@@ -133,10 +120,8 @@ app.put(
   }
 );
 
-// Elimino un usuario
 app.delete(
-  "/users/:id/delete",
-  /*Middleware.verify*/ async (req, res) => {
+  "/users/:id/delete",async (req, res) => {
     try {
       const result = await UsrController.deleteUser(req.params.id);
       if (result) {
@@ -150,10 +135,8 @@ app.delete(
   }
 );
 
-// Edito roles del usuario
 app.put(
-  "/users/:id/editRoles",
-  /*Middleware.verify*/ async (req, res) => {
+  "/users/:id/editRoles",async (req, res) => {
     const roles = req.body.roles;
     try {
       const result = await UsrController.editRoles(roles, req.params.id);
@@ -168,10 +151,8 @@ app.put(
   }
 );
 
-//Edito isActive
 app.put(
-  "/users/:id/editActive",
-  /*Middleware.verify*/ async (req, res) => {
+  "/users/:id/editActive", async (req, res) => {
     const isActive = req.body.isActive;
     try {
       const result = await UsrController.editActive(isActive, req.params.id);
@@ -186,11 +167,7 @@ app.put(
   }
 );
 
-//-------------------------------------------------------------------------------------------------------
-// ENDPOINTS CHARACTER
-//-------------------------------------------------------------------------------------------------------
 
-//Get de todos los personajes
 app.get("/characters", async (req, res) => {
   let limit = req.query.limit;
   let offset = req.query.offset;
@@ -203,10 +180,8 @@ app.get("/characters", async (req, res) => {
   }
 });
 
-//Get info de un personaje
 app.get(
-  "/characters/:id",
-  /*Middleware.verify*/ async (req, res) => {
+  "/characters/:id", async (req, res) => {
     let characterId = req.params.id;
 
     try {
@@ -218,10 +193,8 @@ app.get(
   }
 );
 
-//Creo nuevo personaje
 app.post(
-  "/characters/create",
-  /*Middleware.verify*/ async (req, res) => {
+  "/characters/create", async (req, res) => {
     let characterId = req.body.characterId;
     let name = req.body.name;
     let faceImage = req.body.faceImage;
@@ -251,10 +224,8 @@ app.post(
   }
 );
 
-//Edito personaje
 app.put(
-  "/characters/:id/edit",
-  /*Middleware.verify*/ async (req, res) => {
+  "/characters/:id/edit", async (req, res) => {
     const character = { _id: req.params.id, ...req.body };
 
     try {
@@ -270,10 +241,8 @@ app.put(
   }
 );
 
-//Elimino personaje
 app.delete(
-  "/characters/:id/delete",
-  /*Middleware.verify*/ async (req, res) => {
+  "/characters/:id/delete", async (req, res) => {
     try {
       const result = await CharactersController.deleteCharacter(req.params.id);
       if (result) {

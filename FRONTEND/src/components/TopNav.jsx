@@ -24,10 +24,6 @@ const TopNav = ({ isScrolled }) => {
     },
   ];
 
-  // const navigate = useNavigate();
-  // //onAuthStateChanged(firebaseAuth, (currentUser) => {
-  //   if (!currentUser) navigate("/login");
-  // });
   return (
     <NavContainer>
       <nav className={`${isScrolled ? "scrolled" : "notScroll"}`}>
@@ -49,9 +45,7 @@ const TopNav = ({ isScrolled }) => {
           </ul>
         </div>
         <div className="rightSide">
-          {/* <button onClick={() => signOut(firebaseAuth)}>
-            <AiOutlineLogout />
-          </button> */}
+          {/* */}
         </div>
       </nav>
     </NavContainer>

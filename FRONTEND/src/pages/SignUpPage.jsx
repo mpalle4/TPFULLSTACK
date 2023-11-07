@@ -40,18 +40,14 @@ const SignUpPage = () => {
     })
       .then((response) => {
         response.json();
-        //alert("Usuario creado correctamente");
         console.log(JSON.stringify(userData));
-        //window.open("login.html");
         navigate("/login");
-        //this.close();
       })
       .then((data) => {
         console.log(data);
       })
       .catch((err) => {
         console.log("Error al crear usuario", err);
-        //alert("Error al crear el usuario " + err);
       });
   };
 

@@ -14,14 +14,13 @@ const CreateCharacter = () => {
   });
 
   const navigate = useNavigate();
-  const [userId, setUserId] = useState(""); // Declarar userId aquí
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const userId1 = window.localStorage.getItem("userId");
     if (userId1 !== null) {
       const userId = userId1.replace(/['"]+/g, "");
-      setUserId(userId); // Actualizar el valor de userId
-      // Continuar con el procesamiento usando userIdWithoutQuotes
+      setUserId(userId);
     } else {
       navigate("/login");
     }
@@ -64,15 +63,11 @@ const CreateCharacter = () => {
           response.status !== 404
         ) {
           response.json();
-          //alert("Personaje creado correctamente");
-          //window.open("login.html");
           updateMyCharacters();
           console.log(characterData.characterId);
           navigate("/");
-          //this.close();
         } else {
           console.log("Error al crearse el personaje");
-          //alert("Error al crearse el personaje ");
         }
       })
       .then((data) => {
@@ -121,7 +116,7 @@ const CreateCharacter = () => {
   };
 
   window.onscroll = () => {
-    setIsScrolled(window.pageYOffset === 0 ? false : true); //si no scrolleo
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
 
@@ -400,9 +395,9 @@ const Container = styled.div`
   }
   .options {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta el ancho de las columnas según tus necesidades */
-    justify-content: center; /* Centra horizontalmente los elementos */
-    gap: 10px; /* Agrega espacio entre los elementos si lo deseas */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: center;
+    gap: 10px; 
   }
   
   input {
@@ -430,10 +425,10 @@ const Container = styled.div`
     border: none;
     cursor: pointer;
     color: white;
-    font-size: 1.5rem; /* Cambia el tamaño de fuente según tus necesidades */
+    font-size: 1.5rem;
     width: 20rem;
-    display: block; /* Hacer que el botón sea un bloque */
-    margin: 0 auto; /* Centrar horizontalmente */
+    display: block;
+    margin: 0 auto; 
   }
 
 

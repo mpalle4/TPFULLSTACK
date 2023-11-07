@@ -13,7 +13,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   window.onscroll = () => {
-    setIsScrolled(window.pageYOffset === 0 ? false : true); //si no scrolleo
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
 
@@ -37,7 +37,6 @@ const HomePage = () => {
       }
     } catch (err) {
       console.log("Error al obtener el usuario", err);
-      //alert("Error al obtener el usuario " + err);
     }
   };
 
@@ -92,7 +91,7 @@ const HomePage = () => {
           </div>
           </div>
       </div>
-      {/* <SliderContainer movies={movies} */ }
+      {/**/ }
     </HomeContainer>
   );
 };
